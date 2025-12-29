@@ -24,7 +24,7 @@ jobs:
 
     - name: dbt compile (NO DB)
       run: |
-        cd dbt_project
+        cd dbt_ci
         dbt compile --no-version-check
 
     - name: Validate SQL
