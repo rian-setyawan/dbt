@@ -7,7 +7,8 @@ if not MODEL:
     print("❌ Model name required")
     sys.exit(1)
 
-compiled_path = f"dbt_project/target/compiled/dbt_ci/models/{MODEL}.sql"
+# compiled_path = f"dbt_project/target/compiled/dbt_ci/models/{MODEL}.sql"
+compiled_path = f"dbt_ci/target/compiled/dbt_ci/models/{MODEL}.sql"
 
 if not os.path.exists(compiled_path):
     print("❌ Compiled SQL not found:", compiled_path)
