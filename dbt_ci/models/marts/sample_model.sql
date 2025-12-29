@@ -1,4 +1,4 @@
-with dummy as (
+with dummyx as (
 
     select
         1 as id,
@@ -9,4 +9,4 @@ with dummy as (
 select
     id,
     name
-from dummy
+from dummyx
