@@ -22,6 +22,18 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: Create dummy profiles.yml
+      run: |
+        mkdir -p ~/.dbt
+        cat <<EOF > ~/.dbt/profiles.yml
+        dummy:
+          target: dev
+          outputs:
+            dev:
+              type: duckdb
+              path: ":memory:"
+        EOF
+
     - name: dbt compile (NO DB)
       run: |
         cd dbt_ci
