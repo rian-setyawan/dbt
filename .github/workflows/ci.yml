@@ -1,9 +1,8 @@
 name: dbt CI (no DB)
 
 on:
-  push:
+  pull_request_target:
     branches: [ main ]
-  pull_request:
 
 jobs:
   dbt-compile:
