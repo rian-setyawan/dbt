@@ -1,32 +1,8 @@
-name: dbt CI (no DB)
+- name: dbt compile (NO DB)
+  run: |
+    cd dbt_ci
+    dbt compile --no-version-check
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-
-jobs:
-  dbt-compile:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
-
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
-
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-
-    - name: dbt compile (NO DB)
-      run: |
-        cd dbt_project
-        dbt compile --no-version-check
-
-    - name: Validate SQL
-      run: |
-        python show.py marts/sample_model
+- name: Validate SQL
+  run: |
+    python show.py marts/sample_model
