@@ -1,6 +1,12 @@
 with dummy as (
-    select 1 as id, 'test' as name
+
+    select
+        1 as id,
+        'test' as name
+
 )
 
-select *
+select
+    id,
+    name
 from dummy
