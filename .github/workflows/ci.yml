@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DBT_PROFILES_DIR: .dbt
+      DBT_PROFILES_DIR: ../.dbt
       DBT_PROFILE: dummy
 
     steps:
@@ -28,11 +28,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-core==1.11.2 dbt-duckdb
 
-      - name: Debug dbt (correct project dir)
+      - name: Debug dbt
         run: |
           cd dbt_ci
           pwd
           ls -la
+          ls -la ../.dbt
+          cat ../.dbt/profiles.yml
           dbt debug
 
       - name: Run dbt
