@@ -1,3 +1,12 @@
+with dummy as (
+
+    select
+        1 as id,
+        'test' as nama
+
+)
+
 select
-    1 as id,
-    'dummy' as name
+    id,
+    name
+from dummy
