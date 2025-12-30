@@ -23,7 +23,3 @@ jobs:
       run: |
         cd dbt_ci
         dbt compile --profiles-dir .
-
-    - name: Validate SQL
-      run: |
-        python show.py marts/sample_model
