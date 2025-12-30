@@ -36,6 +36,7 @@ jobs:
           dbt debug
 
       - name: Run dbt
-        run: |
+      - run: |
           cd dbt_ci
+          dbt debug
           dbt run
