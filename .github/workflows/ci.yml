@@ -6,24 +6,40 @@ on:
     branches: [ main ]
 
 jobs:
-  dbt:
+  dbt-ci:
     runs-on: ubuntu-latest
 
+    env:
+      DBT_PROFILES_DIR: dbt/.dbt
+      DBT_PROFILE: dummy
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Install deps
-      run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-core==1.11.2 dbt-duckdb
 
-    - name: dbt compile
-      run: |
-        cd dbt_ci
-        dbt compile --profiles-dir .
+      - name: Debug profile location
+        run: |
+          echo "PWD:"
+          pwd
+          echo "List root:"
+          ls -la
+          echo "List dbt profile dir:"
+          ls -la dbt/.dbt
+          echo "profiles.yml content:"
+          cat dbt/.dbt/profiles.yml
+          dbt debug
 
-    - name: Validate SQL
-      run: |
-        python show.py marts/sample_model
+      - name: Run dbt
+        run: |
+          cd dbt_ci
+          dbt run
