@@ -1,7 +1,8 @@
-name: dbt CI (no DB)
+name: dbt CI
 
 on:
   pull_request:
+    branches: [ main, development ]
   push:
     branches: [ main ]
 
@@ -27,16 +28,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-core==1.11.2 dbt-duckdb
 
-      - name: Debug dbt
+      - name: Debug dbt (correct project dir)
         run: |
+          cd dbt_ci
           pwd
           ls -la
-          ls -la .dbt
-          cat .dbt/profiles.yml
           dbt debug
 
       - name: Run dbt
-      - run: |
+        run: |
           cd dbt_ci
-          dbt debug
           dbt run
