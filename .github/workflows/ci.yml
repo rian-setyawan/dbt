@@ -56,3 +56,16 @@ jobs:
         run: |
           cd dbt_ci
           dbt run
+
+      - name: Run show.py
+        run: |
+          set +e
+          python show.py "$TICKET_ID" > show_output.txt 2>&1
+          SHOW_EXIT_CODE=$?
+          echo "SHOW_EXIT_CODE=$SHOW_EXIT_CODE" >> $GITHUB_ENV
+
+          {
+            echo "SHOW_OUTPUT<<EOF"
+            cat show_output.txt
+            echo "EOF"
+          } >> $GITHUB_ENV
