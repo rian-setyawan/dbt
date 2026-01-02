@@ -62,6 +62,11 @@ jobs:
           set +e
           python show.py "$TICKET" > show_output.txt 2>&1
           SHOW_EXIT_CODE=$?
+          
+          echo "===== show.py output ====="
+          cat show_output.txt
+          echo "=========================="
+          
           echo "SHOW_EXIT_CODE=$SHOW_EXIT_CODE" >> $GITHUB_ENV
 
           {
