@@ -60,7 +60,7 @@ jobs:
       - name: Run show.py
         run: |
           set +e
-          python show.py "$TICKET_ID" > show_output.txt 2>&1
+          python show.py "$TICKET" > show_output.txt 2>&1
           SHOW_EXIT_CODE=$?
           echo "SHOW_EXIT_CODE=$SHOW_EXIT_CODE" >> $GITHUB_ENV
 
