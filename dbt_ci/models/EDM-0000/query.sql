@@ -1,9 +1,11 @@
 with dummy as (
     select
-        7 as id,
-        'test7' as nama
+        1 as id,
+        'test1' as nama,
+        'EDM-0000' flag
 )
 select
     id,
-    nama
+    nama,
+    flag
 from dummy
