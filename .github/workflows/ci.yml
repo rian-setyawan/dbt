@@ -37,9 +37,20 @@ jobs:
           cat ../.dbt/profiles.yml
           dbt debug
 
-      - name: Extract ticket from branch
+      - name: Extract ticket id
         run: |
-          TICKET=$(echo "${GITHUB_HEAD_REF}" | grep -o 'EDM-[0-9]\+')
+          BRANCH="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          echo "Branch: $BRANCH"
+
+          TICKET=$(echo "$BRANCH" | grep -o 'EDM-[0-9]\+' || true)
+
+          if [ -z "$TICKET" ]; then
+            echo "No ticket found in branch, skipping ticket-based validation"
+          else
+            echo "Ticket detected: $TICKET"
+          fi
+
+          echo "TICKET=$TICKET" >> $GITHUB_ENV
 
       - name: Run dbt
         run: |
