@@ -1,7 +1,7 @@
 with dummy as (
     select
-        3 as id,
-        'test' as nama
+        7 as id,
+        'test7' as nama
 )
 select
     id,
