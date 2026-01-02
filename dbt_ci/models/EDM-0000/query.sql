@@ -1,6 +1,6 @@
 with dummy as (
     select
-        2 as id,
+        3 as id,
         'test' as nama
 )
 select
