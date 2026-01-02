@@ -37,6 +37,10 @@ jobs:
           cat ../.dbt/profiles.yml
           dbt debug
 
+      - name: Extract ticket from branch
+        run: |
+          TICKET=$(echo "${GITHUB_HEAD_REF}" | grep -o 'EDM-[0-9]\+')
+
       - name: Run dbt
         run: |
           cd dbt_ci
