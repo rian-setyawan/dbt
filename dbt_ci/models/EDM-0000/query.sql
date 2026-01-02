@@ -1,8 +1,8 @@
 with dummy as (
     select
-        1 as id,
-        'test1' as nama,
-        'EDM-0000' flag
+        2 as id,
+        'test2' as nama,
+        'EDM-0001' flag
 )
 select
     id,
